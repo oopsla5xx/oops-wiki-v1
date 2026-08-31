@@ -1,0 +1,21 @@
+# Cursor Rules
+# Adapter — source of truth is in .ai/
+
+## Onboarding
+When starting work on this project, read these files in order:
+1. `.ai/context/architecture.md`
+2. `.ai/context/conventions.md`
+3. `.ai/commands.md`
+4. `.ai/status.md`
+
+## Task workflow
+Follow `.ai/workflows/task-flow.md` for every task.
+
+## Commands
+All build/test/deploy commands are defined in `.ai/commands.md`. Do not guess or hardcode commands.
+
+## Conventions
+All coding rules with examples are in `.ai/context/conventions.md`. Read before writing code.
+
+## Coordination
+Check `.ai/status.md` before starting a task. Update it when you start and finish.
