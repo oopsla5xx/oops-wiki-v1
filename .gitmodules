@@ -1,0 +1,12 @@
+[submodule "oops-agent-v1"]
+	path = oops-agent-v1
+	url = /Users/vu.nguyen/Documents/oops/oops-agent-v1
+[submodule "oops-api-v1"]
+	path = oops-api-v1
+	url = /Users/vu.nguyen/Documents/oops/oops-api-v1
+[submodule "oops-infra-v1"]
+	path = oops-infra-v1
+	url = git@github.com:oopsla5xx/oops-infra-v1.git
+[submodule "oops-web-v1"]
+	path = oops-web-v1
+	url = /Users/vu.nguyen/Documents/oops/oops-web-v1
