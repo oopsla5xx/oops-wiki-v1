@@ -315,7 +315,7 @@ git submodule update --init
 * Application Load Balancer
 * ECS/Fargate
 * Amazon RDS PostgreSQL
-* MongoDB Atlas / Amazon DocumentDB
+* Amazon DocumentDB (MongoDB-compatible)
 * ElastiCache Redis
 * Amazon S3
 * CloudWatch

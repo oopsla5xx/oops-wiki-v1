@@ -3,6 +3,16 @@
 <!-- Each rule: clear name, ❌ (wrong) and ✅ (correct) examples, short rationale -->
 <!-- Remove sections not relevant to your project -->
 
+This root repo (`oops-wiki-v1`) has no linter/formatter config and no code of
+its own — no stack-specific conventions were detected to auto-fill here.
+Language/framework conventions (Go, TypeScript, Python) belong in each
+submodule's own `.ai/context/conventions.md`.
+
+One cross-repo rule from `docs/architecture/system-design/system-design.md`
+§8: inside `oops-api`, a module must never call another module's database
+directly — only through that module's interface layer (see
+[architecture.md](./architecture.md#module-boundaries)).
+
 ---
 
 ## Error Handling
