@@ -1,6 +1,6 @@
 # ADR-0002: Shared local dev/test infrastructure lives in oops-infra-v1
 
-**Status:** Accepted
+**Status:** Superseded by [ADR-0003](0003-floci-local-aws-emulation.md) (the "Terraform... deferred until an actual AWS environment is needed" consequence below — everything else in this ADR still holds)
 **Date:** 2026-08-31
 
 ---
