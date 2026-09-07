@@ -15,5 +15,6 @@ This file is used for coordination between multiple agents. Always read before s
 
 <!-- Keep the 3-5 most recent entries for context -->
 <!-- Format: - task-name — done: YYYY-MM-DD — notes: ... -->
+- setup-floci — done: 2026-09-02 — replaced oops-api-v1's local Postgres/Redis with Floci-provisioned RDS/ElastiCache/S3 (`oops-infra-v1/terraform/local/`), see ADR-0003 (supersedes ADR-0002's Terraform-deferral) for the decision and non-obvious config it took to get there. PRs open on `oops-infra-v1` and `oops-api-v1` (branch `feat/floci-local-aws-emulation` on both).
 - centralize-local-infra-in-oops-infra — done: 2026-08-31 — created oops-infra-v1 repo + real git submodule (oops-wiki-v1 was not a git repo at all, had to `git init` it), moved shared dev/test docker compose there, updated oops-api-v1 Makefile/CI/README, PR #32 open (CI green except 2 pre-existing unrelated failures: missing migration files, stale mocks). oops-api-v1/oops-web-v1 NOT yet converted to real submodules — separate follow-up, see Blocked.
 - add-debug-skill — done: 2026-07-26 — tool-agnostic investigation workflow (Reproduce → Reduce → Observe → Hypothesize → Experiment → Root Cause → Fix → Verify), MCP-aware but not MCP-required
