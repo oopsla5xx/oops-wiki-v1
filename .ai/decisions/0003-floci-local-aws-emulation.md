@@ -1,6 +1,6 @@
 # ADR-0003: Floci for local AWS infrastructure emulation
 
-**Status:** Accepted
+**Status:** Accepted  
 **Date:** 2026-09-02
 
 ---
