@@ -1,6 +1,6 @@
 # ADR-0004: Split `terraform/local/*.tf` by infra capability, not application domain
 
-**Status:** Accepted
+**Status:** Accepted  
 **Date:** 2026-09-08
 
 ---
