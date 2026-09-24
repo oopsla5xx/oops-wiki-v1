@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreCompact\",\"additionalContext\":\"Reminder: if this session has unresolved multi-session work tied to an active OpenSpec change, consider using the handoff skill to write openspec/changes/<change>/progress.md before compaction. See docs/agent-context/authority.md for the progress.md convention.\"}}'"
+          }
+        ]
+      }
+    ]
+  }
+}

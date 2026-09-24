@@ -1,0 +1,36 @@
+# Tasks
+
+## 1. Root context foundation
+
+- [x] 1.1 Rewrite root `CLAUDE.md`: replace the empty `## When starting a new session` / `## When assigned a task` headings with the minimal load-bearing facts a session needs unconditionally (workspace has no code of its own; 4 repos linked as git submodules, always checked out together). Review the existing `## NEVER` bullets ("do not edit ran migrations", "do not push to main") — the migration-file rule reads as copied from `oops-api-v1`'s template and does not apply to a repo with no migrations; replace it with a root-appropriate constraint and keep/adjust the rest. Verify: no empty heading remains; every `NEVER` bullet is actually applicable to the root repo.
+- [x] 1.2 Establish the root domain glossary at a root-level path (reuse the old `.ai/context/domain-glossary.md` skeleton via `git show HEAD:.ai/context/domain-glossary.md` as a starting point if useful — it was mostly unfilled), and add a one-line pointer to it from root `CLAUDE.md`. Verify: file exists at the chosen path; root `CLAUDE.md` references it; no repo-local `CLAUDE.md` or doc contains a duplicate glossary.
+- [x] 1.3 Add an explicit pointer from root `CLAUDE.md`/docs to the existing cross-repo security content already in `docs/architecture/system-design/system-design.md` (auth model, RBAC). Verify: no content is duplicated — only a reference is added, at the point the context-layering spec's "Root context scope" requirement calls for one.
+- [x] 1.4 Write the authority/conflict-resolution matrix as a root doc (e.g. `docs/agent-context/authority.md`), derived from the `ai-environment/context-layering` spec's "Explicit authority order on conflicting information" requirement, and add a one-line pointer to it from every repo's `CLAUDE.md` (root + `oops-api-v1` + `oops-web-v1` + `oops-infra-v1`). Verify: doc content covers every scenario in that spec requirement; every `CLAUDE.md` has exactly one pointer line to it, with no restated copy of the matrix itself.
+
+## 2. Per-repo context — oops-api-v1
+
+- [x] 2.1 Rewrite `oops-api-v1/CLAUDE.md`: fill the currently-empty `### Before writing code` and `### When adding an env var` sections with the minimal facts this repo needs unconditionally (module list, the "module must not call another module's DB directly" boundary rule, dependency direction) plus a pointer to repo-local docs for detail — recovering reusable content from `git show HEAD:.ai/context/architecture.md`, `conventions.md`, and `testing-conventions.md` in this repo where it is still accurate. Verify: no empty heading remains; the existing hard constraints (migration files, hardcoded values, JSON error responses, env vars, dependency recording) are preserved unchanged.
+- [x] 2.2 Create `oops-api-v1/docs/architecture/` with the detailed module map and data-flow content recovered from the deleted `.ai/context/architecture.md`, reconciled against the current `internal/modules/` structure where it has drifted. Verify: `CLAUDE.md` points to it; spot-check at least one described module boundary against the actual code.
+- [x] 2.3 Create the repo-local security checklist doc for this stack (Go-specific: input validation, SQL injection via `sqlc`, error message leakage, secret handling), recovered from the deleted `.ai/context/security-checklist.md` if this repo had one, referencing the root security policy (task 1.3) instead of restating it. Verify: `CLAUDE.md`'s "before writing security-sensitive code" pointer resolves to this file and does not duplicate root content.
+
+## 3. Per-repo context — oops-web-v1
+
+- [x] 3.1 Rewrite `oops-web-v1/CLAUDE.md` (currently an empty shell after the standalone dangling-reference fix): fill with the minimal load-bearing facts and pointers for the Next.js stack, mirroring task 2.1's approach. Verify: no empty heading remains; no reference to a nonexistent file.
+- [x] 3.2 Create `oops-web-v1/docs/architecture/` with module/data-flow content recovered from the deleted `.ai/context/architecture.md`. Verify: `CLAUDE.md` points to it; spot-check against current component/module structure.
+- [x] 3.3 Create the repo-local security checklist and design-system docs for this stack, recovered from the deleted `.ai/context/security-checklist.md` and `design-system.md`, referencing root instead of restating cross-repo content. Verify: `CLAUDE.md` pointers resolve to these files.
+
+## 4. Per-repo context — oops-infra-v1
+
+- [x] 4.1 Create `oops-infra-v1/CLAUDE.md` (none exists currently) with minimal load-bearing facts and pointers for the Terraform/Docker Compose stack. Verify: file exists; no empty heading; hard constraints present are genuinely applicable to this repo.
+- [x] 4.2 Covering the local-AWS-emulation setup: inspected this repo and found `README.md` already documents it fully (Floci setup, ports, terraform/local layout) — creating a separate `docs/architecture/` file would duplicate it, which the context-layering spec forbids. Adjusted: `CLAUDE.md` points to `README.md` instead, and fixed the dead ADR-0003 link inside `README.md` itself (was pointing at a deleted file on GitHub) plus the ADR-0003/0004 mentions to note they're git-history-only now. Verify: `CLAUDE.md` points to the right place; no ADR content restated; no dangling reference remains in `README.md`.
+
+## 5. Automation boundary
+
+- [x] 5.1 Configure the `PreCompact` hook in root `.claude/settings.json` to nudge toward the `handoff` skill. Verify: triggering a manual compaction surfaces the nudge.
+- [x] 5.2 Confirm no other project-level hook exists across the workspace. Verify: searching for `.claude/settings*.json` across root and all three submodules shows only the root file, containing only the `PreCompact` entry from 5.1 — in particular, no `SessionStart` hook anywhere.
+
+## 6. Verification
+
+- [x] 6.1 Review every `CLAUDE.md` in the workspace (root + 3 submodules) against the `ai-environment/context-layering` spec's "CLAUDE.md is a lean index" requirement: no empty heading, no reference to a nonexistent file, no full-text conventions/architecture/security content inlined. Verify: manual pass/fail per file, all four pass.
+- [x] 6.2 Re-run `openspec validate ai-engineering-environment --strict` after all artifact edits made during this task list. Verify: command reports the change valid.
+- [x] 6.3 Dry-ran against a real case: `docs/architecture/system-design/system-design.md` §8 describes 8 planned `internal/modules/` (identity, workspace, project, semantic, knowledgegraph, collaboration, agentgateway, health) but the repo currently only has `health/`. Classified per the authority matrix: this is a "what is currently implemented" question → source code wins → only `health/` is implemented, the rest is planned. Confirmed the doc itself already marks `health/` as "đã có sẵn" (already exists) and frames the rest as the pattern to follow — so no stale-doc conflict exists here, and an agent applying the matrix reaches the correct conclusion either way. Also confirmed `oops-api-v1/CLAUDE.md` points to the current, real `internal/modules/AGENTS.md` (167 lines, verified to exist and match code) rather than any recreated/stale module-list doc. Verify: matches the expected scenario outcome — no revision needed.
