@@ -2,7 +2,7 @@
 
 Workspace root for **Oops** — an AI-native Software Development Workspace that
 unifies the whole SDLC into one system, managing artifacts as a Semantic
-Model instead of scattered documents. Full spec: [`PRD.md`](./PRD.md).
+Model instead of scattered documents.
 
 This repo is the workspace root: it holds the shared docs (PRD, ADRs,
 engineering standards) and links the four project repos below as **git
@@ -36,11 +36,6 @@ for its own setup steps.
 ## Docs
 
 - [`PRD.md`](./PRD.md) — product vision, architecture, repository strategy
-- [`.ai/decisions/`](./.ai/decisions) — ADRs, key technical decisions
 - [`docs/`](./docs) — engineering standards, conventions, git workflow
 
 ## AI Workflow
-
-This workspace also carries a shared AI agent workflow (`.ai/` + `.claude/skills/`)
-used across all four repos — spec-driven development, task planning, TDD
-implementation, and self-check/ship gates. See [`docs/ai-workflow.md`](./docs/ai-workflow.md).

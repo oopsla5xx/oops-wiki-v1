@@ -19,7 +19,9 @@ Can be skipped with `git push --no-verify` — this is a convenience layer, not 
 `oops-api-v1`'s hook deliberately skips `make test-cover` (needs Docker + Postgres/Redis
 containers + migrations — too slow for every push) and skips a separate `go vet` (already
 covered by `golangci-lint`'s default linters). The full gate — coverage ≥ 90%, staleness check
-on generated mocks — still runs in CI. See `oops-api-v1/.ai/decisions/003-lefthook-pre-push-hook.md`.
+on generated mocks — still runs in CI. (The original decision writeup lived at
+`oops-api-v1/.ai/decisions/003-lefthook-pre-push-hook.md`, since deleted — findable only via git
+history; see `docs/agent-context/authority.md` for where new technical decisions are recorded now.)
 
 ---
 

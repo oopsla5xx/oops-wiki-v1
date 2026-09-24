@@ -270,7 +270,9 @@ FastAPI + LangGraph
 
 Terraform + AWS (production infrastructure), và Docker Compose cho shared
 local dev/test infrastructure (Postgres, Redis — dùng chung giữa oops-api
-và oops-agent). Chi tiết: `.ai/decisions/0002-shared-local-infra-in-oops-infra.md`.
+và oops-agent). Quyết định gốc (ADR-0002, lịch sử) chỉ còn trong git history
+(`.ai/decisions/` đã bị xoá khỏi working tree) — xem `docs/agent-context/authority.md`
+cho quy ước ghi quyết định kỹ thuật hiện tại.
 
 ### oops-wiki
 

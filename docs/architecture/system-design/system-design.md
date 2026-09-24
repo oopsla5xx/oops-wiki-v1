@@ -299,5 +299,6 @@ Module sau không được gọi thẳng DB của module trước — phải qua
 - **CRDT cho canvas** — nâng cấp nếu có bằng chứng cần multi-cursor editing đồng thời trên
   cùng field.
 
-Các quyết định này (và các trade-off ở mỗi mục) nên được ghi thành ADR riêng trong
-`.ai/decisions/` khi task implement thực tế bắt đầu, theo `.ai/workflows/task-flow.md` Phase 4.
+Các quyết định này (và các trade-off ở mỗi mục) nên được ghi vào `design.md` của OpenSpec
+change implement nó, khi task implement thực tế bắt đầu — xem `docs/agent-context/authority.md`
+cho quy ước ghi quyết định kỹ thuật hiện tại (không còn thư mục ADR riêng).
