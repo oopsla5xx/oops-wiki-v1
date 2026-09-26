@@ -67,7 +67,7 @@ erDiagram
 ### 3.1 Identity & Workspace (module `identity`, `workspace`)
 
 ```
-users(id, email, password_hash, created_at)
+users(id, first_name, last_name, username, email, password_hash, created_at, updated_at, deleted_at)
 workspaces(id, name, created_at)
 workspace_members(workspace_id, user_id, role_id, created_at)
 roles(id, workspace_id, name, is_system boolean)
