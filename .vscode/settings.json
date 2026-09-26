@@ -3,5 +3,7 @@
   "cSpell.words": [
     "floci",
     "healthcheck"
-  ]
+  ],
+  "editor.inlineSuggest.triggerCommandOnProviderChange": true,
+  "keyboard.touchbar.enabled": true
 }

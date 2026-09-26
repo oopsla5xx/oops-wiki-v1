@@ -9,15 +9,17 @@ issued session — via a single registration endpoint.
 ## Requirements
 
 ### Requirement: Account Registration
-The system SHALL allow creating a user account by submitting `first_name`, `last_name`, `username`,
-`email`, and `password` to `POST /api/v1/auth/register`, returning the created account on success without ever
-exposing the password or its hash.
+The system SHALL allow creating a user account by submitting `username`, `email`, and `password` to
+`POST /api/v1/auth/register`, returning the created account on success without ever exposing the
+password or its hash. `first_name` and `last_name` are not collected at registration — they start
+empty and are set later via profile update.
 
 #### Scenario: Successful registration
-- **WHEN** a client submits valid `first_name`, `last_name`, `username`, `email`, and `password`
+- **WHEN** a client submits valid `username`, `email`, and `password`
 - **THEN** the system creates the account, stores a hash of the password (never the plaintext), and
-  responds `201 Created` with the account's `id`, `first_name`, `last_name`, `username`, `email`,
-  `created_at`, and `updated_at` — with no password or password hash field present
+  responds `201 Created` with the account's `id`, `first_name` (empty), `last_name` (empty),
+  `username`, `email`, `created_at`, and `updated_at` — with no password or password hash field
+  present
 
 ### Requirement: Email Format Validation
 The system SHALL reject a registration request whose `email` is not a syntactically valid email
